@@ -13,7 +13,7 @@
 <body>
     <nav 
     class="navbar navbar-expand-lg"
-    :class="{'navbar-light bg-light': !useDarkMode, 'navbar-dark bg-dark': useDarkMode}"
+    :class="navbarClasses"
     >
         <div class="container-fluid">
           <a class="navbar-brand" href="#">bgame</a>
@@ -63,33 +63,43 @@
     
     <script>
         Vue.createApp({
-            data() {
-                return {
-                  activePage: 0,
-                  useDarkMode: false,
-                  pages: [
-                    {
-                      link: {text: 'Home', url: 'index.html'},
-                      pageTitle: 'Welcome, Player!',
-                      content: 'Conquer the world.'
-
-                    },
-                    {
-                      link: {text: 'Register', url: 'register.html'},
-                      pageTitle: 'Create an account!',
-                      content: '[Register form]'
-
-                    },
-                    {
-                      link: {text: 'Login', url: 'login.html'},
-                      pageTitle: 'Login to start conquering!',
-                      content: '[Login form]'
-
-                    }
-
-                  ]
-                };
+          computed: {
+            navbarClasses() {
+              return {
+                'navbar-light': !this.useDarkMode,
+                'bg-light': !this.useDarkMode,
+                'navbar-dark': this.useDarkMode,
+                'bg-dark': this.useDarkMode
+              }
             }
+          },
+          data() {
+              return {
+                activePage: 0,
+                useDarkMode: false,
+                pages: [
+                  {
+                    link: {text: 'Home', url: 'index.html'},
+                    pageTitle: 'Welcome, Player!',
+                    content: 'Conquer the world.'
+
+                  },
+                  {
+                    link: {text: 'Register', url: 'register.html'},
+                    pageTitle: 'Create an account!',
+                    content: '[Register form]'
+
+                  },
+                  {
+                    link: {text: 'Login', url: 'login.html'},
+                    pageTitle: 'Login to start conquering!',
+                    content: '[Login form]'
+
+                  }
+
+                ]
+              };
+          }
         }).mount('body');
     </script>
 </body>
