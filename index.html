@@ -11,31 +11,62 @@
     <script src="script.js"></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-dark navbar-dark bg-dark">
+    <nav 
+    class="navbar navbar-expand-lg"
+    :class="{'navbar-light bg-light': !useDarkMode, 'navbar-dark bg-dark': useDarkMode}"
+    >
         <div class="container-fluid">
           <a class="navbar-brand" href="#">bgame</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <button 
+          class="navbar-toggler" 
+          type="button" 
+          data-bs-toggle="collapse" 
+          data-bs-target="#navbarNavDropdown" 
+          ria-controls="navbarNavDropdown" 
+          aria-expanded="false" 
+          aria-label="Toggle navigation"
+          >
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
               <li v-for="(page, index) in pages" class="nav-item" :key="index">
-                <a class="nav-link" :href="page.link.url" :title="page.link.text">{{ page.link.text }}</a>
+                <a 
+                  class="nav-link" 
+                  :class="{active: activePage == index}"
+                  :href="page.link.url" 
+                  :title="page.link.text"
+                  @click.prevent="activePage = index"
+                  >{{ page.link.text }}</a>
               </li>
             </ul>
+            <div class="form-check form-switch">
+              <input 
+              class="form-check-input" 
+              type="checkbox" 
+              role="switch" 
+              id="darkMode" 
+              @click="useDarkMode = !useDarkMode" 
+              checked
+              >
+              <label v-if="useDarkMode == false" for="darkMode">Go dark</label>
+              <label v-else for="darkMode">Go light</label>
+            </div> 
           </div>
         </div>
       </nav>
 
     <div id="content" class="container">
-        <h1>{{ pageTitle }}</h1>
-        <p>{{ content }}</p>
+        <h1>{{ pages[activePage].pageTitle }}</h1>
+        <p>{{ pages[activePage].content }}</p>
     </div>   
     
     <script>
         Vue.createApp({
             data() {
                 return {
+                  activePage: 0,
+                  useDarkMode: false,
                   pages: [
                     {
                       link: {text: 'Home', url: 'index.html'},
