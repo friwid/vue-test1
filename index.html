@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>bmgame</title>
@@ -9,102 +10,113 @@
     <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="script.js"></script>
+
 </head>
 <body>
+
+  <header>
     <nav 
     :class="[`navbar-${theme}`, `bg-${theme}`, 'navbar', 'navbar-expand-lg']"
     >
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">bgame</a>
-          <button 
-          class="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarNavDropdown" 
-          ria-controls="navbarNavDropdown" 
-          aria-expanded="false" 
-          aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav">
-              <li v-for="(page, index) in pages" class="nav-item" :key="index">
-                <a 
-                  class="nav-link" 
-                  :class="{active: activePage == index}"
-                  :href="page.link.url" 
-                  :title="page.link.text"
-                  @click.prevent="activePage = index"
-                  >{{ page.link.text }}</a>
-              </li>
-            </ul>
-            <div class="form-check form-switch">
-              <input 
-              class="form-check-input" 
-              type="checkbox" 
-              role="switch" 
-              id="theme" 
-              @click="changeTheme()" 
-              checked
-              >
-              <label :class="`text-${themeSwitch}`" for="theme">Go {{ themeSwitch }}</label>
-            </div> 
-          </div>
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">bgame</a>
+        <button 
+        class="navbar-toggler" 
+        type="button" 
+        data-bs-toggle="collapse" 
+        data-bs-target="#navbarNavDropdown" 
+        ria-controls="navbarNavDropdown" 
+        aria-expanded="false" 
+        aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li v-for="(page, index) in pages" class="nav-item" :key="index">
+              <a 
+                class="nav-link" 
+                :class="{active: activePage == index}"
+                :href="page.link.url" 
+                :title="page.link.text"
+                @click.prevent="activePage = index"
+                >{{ page.link.text }}</a>
+            </li>
+          </ul>
+          <div class="form-check form-switch">
+            <input 
+            class="form-check-input" 
+            type="checkbox" 
+            role="switch" 
+            id="theme" 
+            @click="changeTheme()" 
+            checked
+            >
+            <label :class="`text-${themeSwitch}`" for="theme">Go {{ themeSwitch }}</label>
+          </div> 
         </div>
-      </nav>
+      </div>
+    </nav>
+  </header>
 
+  <main>
     <div id="content" class="container">
         <h1>{{ pages[activePage].pageTitle }}</h1>
         <p>{{ pages[activePage].content }}</p>
     </div>   
-    
-    <script>
-        Vue.createApp({
-          data() {
-              return {
-                activePage: 0,
-                theme: 'light',
-                themeSwitch: 'dark',
-                pages: [
-                  {
-                    link: {text: 'Home', url: 'index.html'},
-                    pageTitle: 'Welcome, Player!',
-                    content: 'Conquer the world.'
+  </main> 
 
-                  },
-                  {
-                    link: {text: 'Register', url: 'register.html'},
-                    pageTitle: 'Create an account!',
-                    content: '[Register form]'
+  <footer>
 
-                  },
-                  {
-                    link: {text: 'Login', url: 'login.html'},
-                    pageTitle: 'Login to start conquering!',
-                    content: '[Login form]'
+  </footer>
 
-                  }
+  <script>
+      Vue.createApp({
+        data() {
+            return {
+              activePage: 0,
+              theme: 'light',
+              themeSwitch: 'dark',
+              pages: [
+                {
+                  link: {text: 'Home', url: 'index.html'},
+                  pageTitle: 'Welcome, Player!',
+                  content: 'Conquer the world.'
 
-                ]
-              };
-          },
-          methods: {
-            changeTheme() {
-              let theme = 'light';
-              let themeSwitch = 'dark';
+                },
+                {
+                  link: {text: 'Register', url: 'register.html'},
+                  pageTitle: 'Create an account!',
+                  content: '[Register form]'
 
-              if (this.theme == 'light') {
-                theme = 'dark';
-                themeSwitch = 'light';
-              }
+                },
+                {
+                  link: {text: 'Login', url: 'login.html'},
+                  pageTitle: 'Login to start conquering!',
+                  content: '[Login form]'
 
-              this.theme = theme;
-              this.themeSwitch = themeSwitch;
+                }
 
+              ]
+            };
+        },
+        methods: {
+          changeTheme() {
+            let theme = 'light';
+            let themeSwitch = 'dark';
+
+            if (this.theme == 'light') {
+              theme = 'dark';
+              themeSwitch = 'light';
             }
+
+            this.theme = theme;
+            this.themeSwitch = themeSwitch;
+
           }
-        }).mount('body');
-    </script>
+        }
+      }).mount('body');
+  </script>
+  
 </body>
 </html>
