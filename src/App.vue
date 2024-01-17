@@ -9,6 +9,7 @@
 
   <main>
     <page-viewer 
+      v-if="pages.length > 0"
       :page="pages[activePage]"
     ></page-viewer>
   </main> 
@@ -28,6 +29,9 @@ export default {
         Navbar,
         PageViewer
     },
+    created() {
+      this.getPages();
+    },
     /**
      * Initializes the data for the Vue instance.
      * @returns {Object} An object containing the initial data.
@@ -37,25 +41,16 @@ export default {
     data() {
         return {
             activePage: 0,
-            pages: [
-            {
-                link: {text: 'Home', url: 'index.html'},
-                pageTitle: 'Welcome, Player!',
-                content: 'Conquer the world.'
-            },
-            {
-              link: {text: 'Register', url: 'register.html'},
-                pageTitle: 'Create an account!',
-                content: '[Register form]'
-            },
-            {
-              link: {text: 'Login', url: 'login.html'},
-                pageTitle: 'Login to start conquering!',
-                content: '[Login form]'
-            }
-
-            ]
+            pages: []
         };
+    },
+    methods: {
+      async getPages() {
+        let res = await fetch('pages.json');
+        let data = await res.json();
+
+        this.pages = data;
+      }
     }
-    }
+  }
 </script>

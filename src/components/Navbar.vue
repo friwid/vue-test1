@@ -53,7 +53,7 @@ export default {
         return {
         theme: 'light',
         themeSwitch: 'dark'
-        }
+        } 
     },
     methods: {
         /**
