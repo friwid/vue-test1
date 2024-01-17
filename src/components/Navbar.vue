@@ -32,10 +32,10 @@
             role="switch"
             id="theme"
             @click="changeTheme()"
-            checked
+            :checked="theme == light"
           />
-          <label :class="`text-${themeSwitch}`" for="theme"
-            >Go {{ themeSwitch }}</label
+          <label :class="`text-${themeContrast}`" for="theme"
+            >Go {{ themeContrast }}</label
           >
         </div>
       </div>
@@ -50,11 +50,16 @@ export default {
   components: {
     NavbarLink,
   },
+  created() {
+    this.getThemeSetting();
+  },
   props: ["pages", "activePage", "navLinkClick"],
   data() {
     return {
-      theme: "light",
-      themeSwitch: "dark",
+      light: "light",
+      dark: "dark",
+      theme: this.light,
+      themeContrast: this.dark,
     };
   },
   methods: {
@@ -63,16 +68,30 @@ export default {
      * @returns {void} No return value
      */
     changeTheme() {
-      let theme = "light";
-      let themeSwitch = "dark";
+      let theme = this.light;
+      let themeContrast = this.dark;
 
-      if (this.theme == "light") {
-        theme = "dark";
-        themeSwitch = "light";
+      if (this.theme == this.light) {
+        theme = this.dark;
+        themeContrast = this.light;
       }
 
       this.theme = theme;
-      this.themeSwitch = themeSwitch;
+      this.themeContrast = themeContrast;
+      this.storeThemeSetting();
+    },
+    storeThemeSetting() {
+      localStorage.setItem("theme", this.theme);
+      localStorage.setItem("themeContrast", this.themeContrast);
+    },
+    getThemeSetting() {
+      let theme = localStorage.getItem("theme");
+      let themeContrast = localStorage.getItem("themeContrast");
+
+      if (theme && themeContrast) {
+        this.theme = theme;
+        this.themeContrast = themeContrast;
+      }
     },
   },
 };
