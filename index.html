@@ -37,10 +37,10 @@
               <a 
                 class="nav-link" 
                 :class="{active: activePage == index}"
-                :href="page.link.url" 
-                :title="page.link.text"
+                :href="page.pageLink.linkUrl" 
+                :title="page.pageLink.linkText"
                 @click.prevent="activePage = index"
-                >{{ page.link.text }}</a>
+                >{{ page.pageLink.linkText }}</a>
             </li>
           </ul>
           <div class="form-check form-switch">
@@ -86,22 +86,19 @@
               themeSwitch: 'dark',
               pages: [
                 {
-                  link: {text: 'Home', url: 'index.html'},
+                  pageLink: {linkText: 'Home', linkUrl: 'index.html'},
                   pageTitle: 'Welcome, Player!',
-                  content: 'Conquer the world.'
-
+                  pageContent: 'Conquer the world.'
                 },
                 {
-                  link: {text: 'Register', url: 'register.html'},
+                  pageLink: {linkText: 'Register', linkUrl: 'register.html'},
                   pageTitle: 'Create an account!',
-                  content: '[Register form]'
-
+                  pageContent: '[Register form]'
                 },
                 {
-                  link: {text: 'Login', url: 'login.html'},
+                  pageLink: {linkText: 'Login', linkUrl: 'login.html'},
                   pageTitle: 'Login to start conquering!',
-                  content: '[Login form]'
-
+                  pageContent: '[Login form]'
                 }
 
               ]
@@ -132,7 +129,7 @@
         template: `
           <div class="container">
             <h1>{{ page.pageTitle }}</h1>
-            <p>{{ page.content }}</p>
+            <p>{{ page.pageContent }}</p>
           </div>   
         `
       })  ;    
