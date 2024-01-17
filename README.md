@@ -1,4 +1,7 @@
 # bgame
-Browsergame Test
-
-16.01.2024: Initializing project with Vue.
+Browsergame Test<br>
+https://bgame.ut99.org<br>
+<p>
+16.01.24: Initializing project with Vue.<br>
+17.01.24: Learning how to correctly structure a Vue app.
+</p>
