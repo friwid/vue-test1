@@ -18,13 +18,11 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                 <li v-for="(page, index) in pages" class="nav-item" :key="index">
-                    <a 
-                    class="nav-link" 
-                    :class="{active: activePage == index}"
-                    :href="page.pageLink.linkUrl" 
-                    :title="page.pageLink.linkText"
-                    @click.prevent="navLinkClick(index)"
-                    >{{ page.pageLink.linkText }}</a>
+                    <navbar-link
+                        :page="page"
+                        :isActive="activePage == index"
+                        @click.prevent="navLinkClick(index)"
+                    ></navbar-link>
                 </li>
                 </ul>
                 <div class="form-check form-switch">
@@ -44,7 +42,12 @@
 </template>
 
 <script>
+import NavbarLink from './NavbarLink.vue';
+
 export default {
+    components: {
+        NavbarLink
+    },
     props: ['pages', 'activePage', 'navLinkClick'],
     data() {
         return {

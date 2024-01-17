@@ -39,19 +39,19 @@ export default {
             activePage: 0,
             pages: [
             {
-                pageLink: {linkText: 'Home', linkUrl: 'index.html'},
+                link: {text: 'Home', url: 'index.html'},
                 pageTitle: 'Welcome, Player!',
-                pageContent: 'Conquer the world.'
+                content: 'Conquer the world.'
             },
             {
-                pageLink: {linkText: 'Register', linkUrl: 'register.html'},
+              link: {text: 'Register', url: 'register.html'},
                 pageTitle: 'Create an account!',
-                pageContent: '[Register form]'
+                content: '[Register form]'
             },
             {
-                pageLink: {linkText: 'Login', linkUrl: 'login.html'},
+              link: {text: 'Login', url: 'login.html'},
                 pageTitle: 'Login to start conquering!',
-                pageContent: '[Login form]'
+                content: '[Login form]'
             }
 
             ]
