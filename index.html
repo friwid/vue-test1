@@ -12,8 +12,7 @@
 </head>
 <body>
     <nav 
-    class="navbar navbar-expand-lg"
-    :class="navbarClasses"
+    :class="[`navbar-${theme}`, `bg-${theme}`, 'navbar', 'navbar-expand-lg']"
     >
         <div class="container-fluid">
           <a class="navbar-brand" href="#">bgame</a>
@@ -45,12 +44,11 @@
               class="form-check-input" 
               type="checkbox" 
               role="switch" 
-              id="darkMode" 
-              @click="useDarkMode = !useDarkMode" 
+              id="theme" 
+              @click="changeTheme()" 
               checked
               >
-              <label v-if="useDarkMode == false" for="darkMode">Go dark</label>
-              <label v-else for="darkMode">Go light</label>
+              <label :class="`text-${themeSwitch}`" for="theme">Go {{ themeSwitch }}</label>
             </div> 
           </div>
         </div>
@@ -63,20 +61,11 @@
     
     <script>
         Vue.createApp({
-          computed: {
-            navbarClasses() {
-              return {
-                'navbar-light': !this.useDarkMode,
-                'bg-light': !this.useDarkMode,
-                'navbar-dark': this.useDarkMode,
-                'bg-dark': this.useDarkMode
-              }
-            }
-          },
           data() {
               return {
                 activePage: 0,
-                useDarkMode: false,
+                theme: 'light',
+                themeSwitch: 'dark',
                 pages: [
                   {
                     link: {text: 'Home', url: 'index.html'},
@@ -99,6 +88,21 @@
 
                 ]
               };
+          },
+          methods: {
+            changeTheme() {
+              let theme = 'light';
+              let themeSwitch = 'dark';
+
+              if (this.theme == 'light') {
+                theme = 'dark';
+                themeSwitch = 'light';
+              }
+
+              this.theme = theme;
+              this.themeSwitch = themeSwitch;
+
+            }
           }
         }).mount('body');
     </script>
