@@ -3,19 +3,15 @@
     <div class="row">
       <div class="col-md-8">
         <div class="mb-3">
-          <label for="" class="form-label">
-            Page Title
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="pageTitle"
-          >
+          <label for="" class="form-label"> Page Title </label>
+          <input 
+            type="text" 
+            class="form-control" 
+            v-model="pageTitle" 
+          />
         </div>
         <div class="mb-3">
-          <label for="" class="form-label">
-            Content
-          </label>
+          <label for="" class="form-label"> Content </label>
           <textarea
             type="text"
             class="form-control"
@@ -26,31 +22,29 @@
       </div>
       <div class="col">
         <div class="mb-3">
-          <label for="" class="form-label">
-            Link Text
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="linkText"
-          >
+          <label for="" class="form-label"> Link Text </label>
+          <input 
+            type="text" 
+            class="form-control" 
+            v-model="linkText" 
+          />
         </div>
         <div class="mb-3">
-          <label for="" class="form-label">
-            Link URL
-          </label>
-          <input
-            type="text"
-            class="form-control"
-            v-model="linkUrl"
-          >
+          <label for="" class="form-label"> Link URL </label>
+          <input 
+            type="text" 
+            class="form-control" 
+            v-model="linkUrl" 
+          />
         </div>
         <div class="row mb-3">
           <div class="form-check">
-            <input class="form-check-input" type="checkbox" v-model="published">
-            <label class="form-check-label" for="gridCheck1">
-            Published
-            </label>
+            <input
+              class="form-check-input"
+              type="checkbox"
+              v-model="published"
+            />
+            <label class="form-check-label" for="gridCheck1"> Published </label>
           </div>
         </div>
       </div>
@@ -67,25 +61,27 @@
 
 <script>
 export default {
-  props: ['pageCreated'],
+  props: ["pageCreated"],
   computed: {
     isFormInvalid() {
-      return !this.pageTitle || !this.content || !this.linkText || !this.linkUrl;
-    }
+      return (
+        !this.pageTitle || !this.content || !this.linkText || !this.linkUrl
+      );
+    },
   },
   data() {
     return {
-      pageTitle: '',
-      content: '',
-      linkText: '',
-      linkUrl: '',
-      published: true
-    }
+      pageTitle: "",
+      content: "",
+      linkText: "",
+      linkUrl: "",
+      published: true,
+    };
   },
   methods: {
     submitForm() {
       if (!this.pageTitle || !this.content || !this.linkText || !this.linkUrl) {
-        alert('Please fill the form.');
+        alert("Please fill the form.");
         return;
       }
 
@@ -94,24 +90,24 @@ export default {
         content: this.content,
         link: {
           text: this.linkText,
-          url: this.linkUrl
+          url: this.linkUrl,
         },
-        published: this.published
+        published: this.published,
       });
-      
-      this.pageTitle = '';
-      this.content = '';
-      this.linkText = '';
-      this.linkUrl = '';
+
+      this.pageTitle = "";
+      this.content = "";
+      this.linkText = "";
+      this.linkUrl = "";
       this.published = true;
-    }
+    },
   },
   watch: {
     pageTitle(newTitle, oldTitle) {
       if (this.linkText == oldTitle) {
         this.linkText = newTitle;
       }
-    }
-  }
-}
+    },
+  },
+};
 </script>
