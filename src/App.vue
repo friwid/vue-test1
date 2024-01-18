@@ -13,7 +13,7 @@
       :page="pages[activePage]"
     ></page-viewer> -->
 
-    <create-page :page-created="pageCreated"></create-page>
+    <create-page @page-created="pageCreated"></create-page>
   </main>
 
   <footer></footer>
