@@ -2,16 +2,19 @@
   {
     "link": { "text": "Home", "url": "index.html" },
     "pageTitle": "Welcome, Player!",
-    "content": "Conquer the world."
+    "content": "Conquer the world.",
+    "published": true
   },
   {
     "link": { "text": "Register", "url": "register.html" },
     "pageTitle": "Create an account!",
-    "content": "[Register form]"
+    "content": "[Register form]",
+    "published": true
   },
   {
     "link": { "text": "Login", "url": "login.html" },
     "pageTitle": "Login to start conquering!",
-    "content": "[Login form]"
+    "content": "[Login form]",
+    "published": false
   }
 ]
