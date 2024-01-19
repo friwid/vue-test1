@@ -8,6 +8,13 @@
 <script>
 export default {
   props: {
+    /**
+     * The page object.
+     * @type {Object}
+     * @property {string} pageTitle - The title of the page.
+     * @property {string} content - The content of the page.
+     * @default {pageTitle: "", content: ""}
+     */
     page: {
       type: Object,
       default(rawProps) {

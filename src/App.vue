@@ -20,16 +20,19 @@
 </template>
 
 <script>
+// Importing necessary components
 import Navbar from "./components/Navbar.vue";
 import PageViewer from "./components/PageViewer.vue";
 import CreatePage from "./components/CreatePage.vue";
 
 export default {
+  // Registering the components
   components: {
     Navbar,
     PageViewer,
     CreatePage,
   },
+  // Lifecycle hook that is called after the instance has been created
   created() {
     this.getPages();
   },
@@ -46,12 +49,20 @@ export default {
     };
   },
   methods: {
+    /**
+     * Fetches the pages from the server and updates the state.
+     * @async
+     */
     async getPages() {
       let res = await fetch("pages.json");
       let data = await res.json();
 
       this.pages = data;
     },
+    /**
+     * Adds a new page to the list of pages.
+     * @param {Object} pageObj - The new page object to be added.
+     */
     pageCreated(pageObj) {
       this.pages.push(pageObj);
     },

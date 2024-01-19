@@ -10,8 +10,15 @@
 
 <script>
 export default {
-  props: ["page", "isActive"],
+  props: [
+    "page",
+    "isActive"
+  ],
   computed: {
+    /**
+     * Returns an object containing CSS classes based on whether the page is active.
+     * @returns {Object} An object containing CSS classes.
+     */
     activeClasses() {
       return {
         active: this.isActive,
@@ -20,6 +27,7 @@ export default {
     },
   },
 };
+
 </script>
 
 <style scoped>

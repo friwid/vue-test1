@@ -62,16 +62,24 @@
 <script>
 export default {
   emits: {
+    /**
+     * Validates the page object and emits it if valid.
+     * @param {Object} page - The page object to be emitted.
+     * @returns {boolean} Returns true if the page object is valid, otherwise false.
+     */
     pageCreated({pageTitle, content, link}) {
       if (!pageTitle || !content || !link || link.text || !link.url) {
         return false;
       }
 
       return true;
-
     }
   },
   computed: {
+    /**
+     * Checks if the form is invalid.
+     * @returns {boolean} Returns true if the form is invalid, otherwise false.
+     */
     isFormInvalid() {
       return (
         !this.pageTitle || !this.content || !this.linkText || !this.linkUrl
@@ -88,6 +96,10 @@ export default {
     };
   },
   methods: {
+    /**
+     * Submits the form and emits the 'pageCreated' event. Clears the form afterwards.
+     * @returns {void} No return value
+     */
     submitForm() {
       if (!this.pageTitle || !this.content || !this.linkText || !this.linkUrl) {
         alert("Please fill the form.");
@@ -112,6 +124,12 @@ export default {
     },
   },
   watch: {
+    /**
+     * Updates the link text in the form when the page title changes.
+     * @param {string} newTitle - The new page title.
+     * @param {string} oldTitle - The old page title.
+     * @returns {void} No return value
+     */
     pageTitle(newTitle, oldTitle) {
       if (this.linkText == oldTitle) {
         this.linkText = newTitle;
@@ -119,4 +137,5 @@ export default {
     },
   },
 };
+
 </script>

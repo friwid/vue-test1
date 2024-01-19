@@ -58,11 +58,18 @@ export default {
     this.getThemeSetting();
   },
   computed: {
+    /**
+     * Returns only the published pages.
+     * @returns {Array} An array of published pages.
+     */
     publishedPages() {
       return this.pages.filter((p) => p.published);
     },
   },
-  props: ["pages", "activePage", "navLinkClick"],
+  props: [
+    "pages", 
+    "activePage", 
+    "navLinkClick"],
   data() {
     return {
       light: "light",
@@ -89,10 +96,18 @@ export default {
       this.themeContrast = themeContrast;
       this.storeThemeSetting();
     },
+    /**
+     * Stores the current theme settings in the local storage.
+     * @returns {void} No return value
+     */
     storeThemeSetting() {
       localStorage.setItem("theme", this.theme);
       localStorage.setItem("themeContrast", this.themeContrast);
     },
+    /**
+     * Retrieves the theme settings from the local storage and applies them.
+     * @returns {void} No return value
+     */
     getThemeSetting() {
       let theme = localStorage.getItem("theme");
       let themeContrast = localStorage.getItem("themeContrast");
