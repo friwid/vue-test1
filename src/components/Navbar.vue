@@ -60,6 +60,9 @@ export default {
   components: {
     NavbarLink,
   },
+    /**
+   * Retrieves the theme setting and fetches all pages.
+   */
   created() {
     this.getThemeSetting();
 

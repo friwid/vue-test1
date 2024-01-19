@@ -8,25 +8,39 @@
 <script>
 export default {
   props: ["index"],
+  
+  /**
+   * Fetches the page data based on the index prop.
+   */
   created() {
     this.page = this.$pages.getSinglePage(this.index);
 
-    /*     this.$watch(() => this.$route.params, (newParams, prevParams) => {
+    /* 
+    this.$watch(() => this.$route.params, (newParams, prevParams) => {
       this.page = this.$pages.getSinglePage(newParams.index);
-    }); */
+    }); 
+    */
   },
+  
   data() {
     return {
       page: null,
     };
   },
-  watch: {
+
+  watch: {  
+    /**
+     * Updates the page data when the index changes.
+     * @param {Number} newIndex - The new index.
+     * @param {Number} oldIndex - The old index.
+     */
     index(newIndex, oldIndex) {
       this.page = this.$pages.getSinglePage(newIndex);
     },
   },
 };
 </script>
+
 
 <style scoped>
 .emphasize {
