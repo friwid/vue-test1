@@ -4,7 +4,7 @@ let pagesJson = localStorage.getItem(pagesKey);
 let pagesStore = JSON.parse(pagesJson);
 
 export default {
-  getAllPage() {
+  getAllPages() {
     return pagesStore;
   },
 

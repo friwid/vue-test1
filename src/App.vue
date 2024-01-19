@@ -1,9 +1,6 @@
 <template>
   <header>
-    <navbar
-      :pages="pages"
-      :active-page="activePage"
-    ></navbar>
+    <navbar></navbar>
   </header>
 
   <main>
@@ -32,30 +29,7 @@ export default {
     PageViewer,
     CreatePage,
   },
-  created() {
-    this.getPages();
-
-    this.$bus.$on('navbarLinkActivated', (index) => {
-      this.activePage = index;
-    });
-  },
-  data() {
-    return {
-      activePage: 0,
-      pages: [],
-    };
-  },
   methods: {
-    /**
-     * Fetches the pages from the server and updates the state.
-     * @async
-     */
-    async getPages() {
-      let res = await fetch("pages.json");
-      let data = await res.json();
-
-      this.pages = data;
-    },
     /**
      * Adds a new page to the list of pages.
      * @param {Object} pageObj - The new page object to be added.
