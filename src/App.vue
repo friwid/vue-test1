@@ -3,15 +3,14 @@
     <navbar
       :pages="pages"
       :active-page="activePage"
-      :nav-link-click="(index) => (activePage = index)"
     ></navbar>
   </header>
 
   <main>
-    <!--     <page-viewer
+        <page-viewer
       v-if="pages.length > 0"
       :page="pages[activePage]"
-    ></page-viewer> -->
+    ></page-viewer>
 
     <create-page @page-created="pageCreated"></create-page>
   </main>
@@ -20,28 +19,23 @@
 </template>
 
 <script>
-// Importing necessary components
 import Navbar from "./components/Navbar.vue";
 import PageViewer from "./components/PageViewer.vue";
 import CreatePage from "./components/CreatePage.vue";
 
 export default {
-  // Registering the components
   components: {
     Navbar,
     PageViewer,
     CreatePage,
   },
-  // Lifecycle hook that is called after the instance has been created
   created() {
     this.getPages();
+
+    this.$bus.$on('navbarLinkActivated', (index) => {
+      this.activePage = index;
+    });
   },
-  /**
-   * Initializes the data for the Vue instance.
-   * @returns {Object} An object containing the initial data.
-   * @property {number} activePage - The index of the active page.
-   * @property {Array} pages - An array of page objects. Each page object contains a link (with text and URL), a page title, and content.
-   */
   data() {
     return {
       activePage: 0,

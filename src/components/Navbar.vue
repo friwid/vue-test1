@@ -17,17 +17,15 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-          <li
+          <navbar-link
             v-for="(page, index) in publishedPages"
             class="nav-item"
             :key="index"
-          >
-            <navbar-link
-              :page="page"
-              :isActive="activePage == index"
-              @click.prevent="navLinkClick(index)"
-            ></navbar-link>
-          </li>
+            :page="page"
+            :index="index"
+            :isActive="activePage == index"
+            @activated="$emit('activated')"
+          ></navbar-link>
         </ul>
         <div class="form-check form-switch">
           <input
@@ -68,8 +66,8 @@ export default {
   },
   props: [
     "pages", 
-    "activePage", 
-    "navLinkClick"],
+    "activePage"
+  ],
   data() {
     return {
       light: "light",

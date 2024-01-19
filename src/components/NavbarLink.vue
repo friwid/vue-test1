@@ -1,17 +1,21 @@
 <template>
-  <a
-    class="nav-link"
-    :class="activeClasses"
-    :href="page.link.url"
-    :title="page.link.text"
-    >{{ page.link.text }}
-  </a>
+  <li>
+    <a
+      class="nav-link"
+      :class="activeClasses"
+      :href="page.link.url"
+      :title="page.link.text"
+      @click.prevent="$bus.$emit('navbarLinkActivated', index)"
+      >{{ page.link.text }}
+    </a>
+</li>
 </template>
 
 <script>
 export default {
   props: [
     "page",
+    "index",
     "isActive"
   ],
   computed: {
