@@ -4,10 +4,9 @@
   </header>
 
   <main>
-
     <router-view></router-view>
 
-<!--     <page-viewer
+    <!--     <page-viewer
       v-if="pages.length > 0"
       :page="pages[activePage]"
     ></page-viewer>

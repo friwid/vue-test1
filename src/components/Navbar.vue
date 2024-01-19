@@ -80,7 +80,7 @@ export default {
       dark: "dark",
       theme: this.light,
       themeContrast: this.dark,
-      pages: []
+      pages: [],
     };
   },
   methods: {

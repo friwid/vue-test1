@@ -1,4 +1,4 @@
-const pagesKey = 'pages';
+const pagesKey = "pages";
 
 let pagesJson = localStorage.getItem(pagesKey);
 let pagesStore = JSON.parse(pagesJson);
@@ -10,5 +10,5 @@ export default {
 
   getSinglePage(index) {
     return pagesStore[index];
-  }
-}
+  },
+};

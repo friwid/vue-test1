@@ -26,7 +26,7 @@
           <input 
             type="text" 
             class="form-control" 
-            v-model="linkText" 
+            v-model="linkText"
           />
         </div>
         <div class="mb-3">
@@ -54,7 +54,9 @@
         class="btn btn-primary"
         :disabled="isFormInvalid"
         @click.prevent="submitForm"
-      >Create Page</button>
+      >
+        Create Page
+      </button>
     </div>
   </form>
 </template>
@@ -67,13 +69,13 @@ export default {
      * @param {Object} page - The page object to be emitted.
      * @returns {boolean} Returns true if the page object is valid, otherwise false.
      */
-    pageCreated({pageTitle, content, link}) {
+    pageCreated({ pageTitle, content, link }) {
       if (!pageTitle || !content || !link || link.text || !link.url) {
         return false;
       }
 
       return true;
-    }
+    },
   },
   computed: {
     /**
@@ -106,7 +108,7 @@ export default {
         return;
       }
 
-      this.$emit('pageCreated', {
+      this.$emit("pageCreated", {
         pageTitle: this.pageTitle,
         content: this.content,
         link: {
@@ -137,5 +139,4 @@ export default {
     },
   },
 };
-
 </script>
