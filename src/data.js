@@ -1,7 +1,9 @@
 const pagesKey = "pages";
 
 let pagesJson = localStorage.getItem(pagesKey);
-let pagesStore = JSON.parse(pagesJson);
+// If no pages are yet stored in the local storage, let pagesStore be an empty array.
+let pagesStore = pagesJson ? JSON.parse(pagesJson) : [];
+
 
 function save() {
   localStorage.setItem(pagesKey, JSON.stringify(pagesStore));
@@ -14,7 +16,7 @@ export default {
   },
 
   getAllPages() {
-    return pagesStore;
+     return pagesStore;
   },
 
   getSinglePage(index) {

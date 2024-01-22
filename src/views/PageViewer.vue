@@ -14,7 +14,7 @@ export default {
    * Fetches the page data based on the index prop.
    */
   created() {
-    this.page = this.$pages.getSinglePage(this.index);
+      this.page = this.$pages.getSinglePage(this.index);
 
     /* 
     this.$watch(() => this.$route.params, (newParams, prevParams) => {
@@ -25,7 +25,7 @@ export default {
 
   data() {
     return {
-      page: null,
+      page: null,     
     };
   },
 
