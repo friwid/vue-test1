@@ -8,7 +8,8 @@
 <script>
 export default {
   props: ["index"],
-  
+  inject: ["$pages"],
+
   /**
    * Fetches the page data based on the index prop.
    */
@@ -21,14 +22,14 @@ export default {
     }); 
     */
   },
-  
+
   data() {
     return {
       page: null,
     };
   },
 
-  watch: {  
+  watch: {
     /**
      * Updates the page data when the index changes.
      * @param {Number} newIndex - The new index.
@@ -40,7 +41,6 @@ export default {
   },
 };
 </script>
-
 
 <style scoped>
 .emphasize {

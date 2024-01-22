@@ -60,7 +60,8 @@ export default {
   components: {
     NavbarLink,
   },
-    /**
+  inject: ["$pages"],
+  /**
    * Retrieves the theme setting and fetches all pages.
    */
   created() {
