@@ -29,14 +29,6 @@
             v-model="linkText"
           />
         </div>
-        <div class="mb-3">
-          <label for="" class="form-label"> Link URL </label>
-          <input 
-            type="text" 
-            class="form-control" 
-            v-model="linkUrl" 
-          />
-        </div>
         <div class="row mb-3">
           <div class="form-check">
             <input
@@ -61,82 +53,62 @@
   </form>
 </template>
 
-<script>
-export default {
-  emits: {
-    /**
-     * Validates the page object and emits it if valid.
-     * @param {Object} page - The page object to be emitted.
-     * @returns {boolean} Returns true if the page object is valid, otherwise false.
-     */
-    pageCreated({ pageTitle, content, link }) {
-      if (!pageTitle || !content || !link || link.text || !link.url) {
-        return false;
-      }
+<script setup>
+import {inject, ref, computed, watch} from "vue";
+import {useRouter} from "vue-router";
 
-      return true;
-    },
-  },
-  computed: {
-    /**
-     * Checks if the form is invalid.
-     * @returns {boolean} Returns true if the form is invalid, otherwise false.
-     */
-    isFormInvalid() {
-      return (
-        !this.pageTitle || !this.content || !this.linkText || !this.linkUrl
-      );
-    },
-  },
-  data() {
-    return {
-      pageTitle: "",
-      content: "",
-      linkText: "",
-      linkUrl: "",
-      published: true,
-    };
-  },
-  methods: {
-    /**
-     * Submits the form and emits the 'pageCreated' event. Clears the form afterwards.
-     * @returns {void} No return value
-     */
-    submitForm() {
-      if (!this.pageTitle || !this.content || !this.linkText || !this.linkUrl) {
-        alert("Please fill the form.");
-        return;
-      }
+const bus = inject("$bus");
+const pages = inject("$pages");
+const router = useRouter();
 
-      this.$emit("pageCreated", {
-        pageTitle: this.pageTitle,
-        content: this.content,
-        link: {
-          text: this.linkText,
-          url: this.linkUrl,
-        },
-        published: this.published,
-      });
+let pageTitle = ref("");
+let content = ref("");
+let linkText = ref("");
+let linkUrl = ref("");
+let published = ref(true);
 
-      this.pageTitle = "";
-      this.content = "";
-      this.linkText = "";
-      this.linkUrl = "";
-      this.published = true;
+/**
+ * Submits the form and emits the 'pageCreated' event. Clears the form afterwards.
+ * @returns {void} No return value
+ */
+function submitForm() {
+  if (!pageTitle || !content || !linkText) {
+    alert("Please fill the form.");
+    return;
+  }
+
+  let newPage = {
+    pageTitle: pageTitle.value,
+    content: content.value,
+    link: {
+      text: linkText.value
     },
-  },
-  watch: {
-    /**
-     * Updates the link text in the form when the page title changes.
-     * @param {string} newTitle - The new page title.
-     * @param {string} oldTitle - The old page title.
-     * @returns {void} No return value
-     */
-    pageTitle(newTitle, oldTitle) {
-      if (this.linkText == oldTitle) {
-        this.linkText = newTitle;
+    published: published.value
+  }
+
+  pages.addPage(newPage);
+
+  bus.$emit("page-created", newPage);
+
+  router.push({path: "/pages"});
+
+
+}
+/**
+ * Checks if the form is invalid.
+ * @returns {boolean} Returns true if the form is invalid, otherwise false.
+ */
+const isFormInvalid = computed(() => !pageTitle || !content || !linkText);
+
+/**
+ * Updates the link text in the form when the page title changes.
+ * @param {string} newTitle - The new page title.
+ * @param {string} oldTitle - The old page title.
+ * @returns {void} No return value
+ */
+watch(pageTitle, (newTitle, oldTitle) =>{
+      if (linkText.value == oldTitle) {
+        linkText.value = newTitle;
       }
-    },
-  },
-};
+    });
 </script>
