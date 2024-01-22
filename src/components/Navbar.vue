@@ -60,7 +60,7 @@ export default {
   components: {
     NavbarLink,
   },
-  inject: ["$pages"],
+  inject: ["$pages", "$bus"],
   /**
    * Retrieves the theme setting and fetches all pages.
    */
@@ -68,6 +68,10 @@ export default {
     this.getThemeSetting();
 
     this.pages = this.$pages.getAllPages();
+
+    this.$bus.$on("page-updated", () => {
+      this.pages = [...this.$pages.getAllPages()];
+    });
   },
   computed: {
     /**
@@ -75,7 +79,7 @@ export default {
      * @returns {Array} An array of published pages.
      */
     publishedPages() {
-      return this.pages.filter((p) => p.published);
+        return this.pages.filter((p) => p.published);
     },
   },
   data() {
