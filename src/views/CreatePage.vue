@@ -98,7 +98,7 @@ function submitForm() {
  * Checks if the form is invalid.
  * @returns {boolean} Returns true if the form is invalid, otherwise false.
  */
-const isFormInvalid = computed(() => !pageTitle || !content || !linkText);
+const isFormInvalid = computed(() => !pageTitle.value || !content.value || !linkText.value);
 
 /**
  * Updates the link text in the form when the page title changes.
