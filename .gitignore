@@ -27,3 +27,4 @@ pnpm-debug.log*
 process.env
 .htaccess
 bak
+deploy.sh
